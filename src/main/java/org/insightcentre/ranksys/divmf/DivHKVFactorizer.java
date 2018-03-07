@@ -82,8 +82,8 @@ public class DivHKVFactorizer<U, I> extends ALSFactorizer<U, I> {
             b.assign(0.0);
 
             data.getUidxPreferences(uidx).forEach(iv -> {
-                int iidx = iv.idx;
-                double rui = iv.v;
+                int iidx = iv.v1;
+                double rui = iv.v2;
                 double cui = confidence.applyAsDouble(rui);
 
                 DoubleMatrix1D qi = q.viewRow(iidx);
@@ -141,8 +141,8 @@ public class DivHKVFactorizer<U, I> extends ALSFactorizer<U, I> {
             b.assign(0.0);
 
             data.getIidxPreferences(iidx).forEach(uv -> {
-                int uidx = uv.idx;
-                double rui = uv.v;
+                int uidx = uv.v1;
+                double rui = uv.v2;
                 double cui = confidence.applyAsDouble(rui);
 
                 DoubleMatrix1D pu = p.viewRow(uidx);

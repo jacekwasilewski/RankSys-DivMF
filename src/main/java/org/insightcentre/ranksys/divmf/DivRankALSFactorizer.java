@@ -127,8 +127,8 @@ public class DivRankALSFactorizer<U, I> extends ALSFactorizer<U, I> {
             double[] sum_cr = new double[]{0};
 
             data.getUidxPreferences(uidx).forEach(iv -> {
-                int iidx = iv.idx;
-                double rui = iv.v;
+                int iidx = iv.v1;
+                double rui = iv.v2;
                 DoubleMatrix1D qi = q.viewRow(iidx);
 
                 DoubleMatrix2D tmp = new DenseDoubleMatrix2D(K, K);
@@ -204,8 +204,8 @@ public class DivRankALSFactorizer<U, I> extends ALSFactorizer<U, I> {
             DoubleMatrix1D sum_cq = new DenseDoubleMatrix1D(K);
 
             data.getUidxPreferences(uidx).forEach(jv -> {
-                int jidx = jv.idx;
-                double ruj = jv.v;
+                int jidx = jv.v1;
+                double ruj = jv.v2;
                 double sj = s.get(jidx);
 
                 sum_sr[0] += sj * ruj;
@@ -254,9 +254,9 @@ public class DivRankALSFactorizer<U, I> extends ALSFactorizer<U, I> {
 
             double si = s.get(iidx);
             data.getIidxPreferences(iidx).forEach(uv -> {
-                int uidx = uv.idx;
+                int uidx = uv.v1;
                 DoubleMatrix1D pu = p.viewRow(uidx);
-                double rui = uv.v;
+                double rui = uv.v2;
 
                 DoubleMatrix2D pp = new DenseDoubleMatrix2D(K, K);
                 ALG.multOuter(pu, pu, pp);
